@@ -1,0 +1,58 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-md w-full space-y-8">
+    <div>
+      <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+        新規アカウント作成
+      </h2>
+      <p class="mt-2 text-center text-sm text-gray-600">
+        または
+        <%= link_to "既存のアカウントでログイン", new_session_path(resource_name), 
+                    class: "font-medium text-blue-600 hover:text-blue-500" %>
+      </p>
+    </div>
+    
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), 
+                 html: { class: "mt-8 space-y-6" }) do |f| %>
+      
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="rounded-md shadow-sm -space-y-px">
+        <div>
+          <%= f.label :email, "メールアドレス", 
+                      class: "sr-only" %>
+          <%= f.email_field :email, 
+                            autofocus: true, 
+                            autocomplete: "email",
+                            placeholder: "メールアドレス",
+                            class: "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm" %>
+        </div>
+        <div>
+          <%= f.label :password, "パスワード", 
+                      class: "sr-only" %>
+          <%= f.password_field :password, 
+                               autocomplete: "new-password",
+                               placeholder: "パスワード",
+                               class: "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm" %>
+          <% if @minimum_password_length %>
+            <p class="mt-1 text-xs text-gray-500">
+              （<%= @minimum_password_length %>文字以上）
+            </p>
+          <% end %>
+        </div>
+        <div>
+          <%= f.label :password_confirmation, "パスワード確認", 
+                      class: "sr-only" %>
+          <%= f.password_field :password_confirmation, 
+                               autocomplete: "new-password",
+                               placeholder: "パスワード確認",
+                               class: "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm" %>
+        </div>
+      </div>
+
+      <div>
+        <%= f.submit "アカウント作成", 
+                     class: "group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500" %>
+      </div>
+    <% end %>
+  </div>
+</div>
